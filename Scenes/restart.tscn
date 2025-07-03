@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0lilnlvjfr4b"]
+
+[ext_resource type="Script" uid="uid://y61sew1hp81" path="res://Scripts/restart.gd" id="1_7g6v7"]
+[ext_resource type="FontFile" uid="uid://cgby5mf42r5g0" path="res://Assets/Fonts/PixelOperator8.ttf" id="1_fu03a"]
+
+[node name="Restart" type="Button"]
+offset_right = 271.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("1_fu03a")
+theme_override_font_sizes/font_size = 24
+text = "Restart Game"
+script = ExtResource("1_7g6v7")

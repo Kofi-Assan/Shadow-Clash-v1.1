@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddkbopjxx436d"]
+
+[ext_resource type="Script" uid="uid://m3t3142gb21c" path="res://Scripts/torch.gd" id="1_h1t0l"]
+[ext_resource type="Texture2D" uid="uid://cxevm01u4xgls" path="res://Assets/Sprites/2d_lights_and_shadows_neutral_point_light.png" id="1_wced7"]
+[ext_resource type="Script" uid="uid://djsxfwf0k1fx7" path="res://Scripts/torch_battery.gd" id="3_beu3c"]
+[ext_resource type="Script" uid="uid://bwvlhtg6lwxwi" path="res://Scripts/point_light_2d.gd" id="3_spjw2"]
+[ext_resource type="PackedScene" uid="uid://etoygqt8g7al" path="res://Scenes/torch_counter_pos.tscn" id="5_kg6dd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kg6dd"]
+radius = 67.0671
+
+[node name="Torch" type="Area2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_h1t0l")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+unique_name_in_owner = true
+energy = 16.0
+shadow_enabled = true
+texture = ExtResource("1_wced7")
+script = ExtResource("3_spjw2")
+percent = 100
+
+[node name="Torch_Battery" type="Timer" parent="."]
+wait_time = 0.4
+script = ExtResource("3_beu3c")
+
+[node name="Torch_counter_pos" parent="." instance=ExtResource("5_kg6dd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_kg6dd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Torch_Battery" to="Torch_Battery" method="_on_timeout"]

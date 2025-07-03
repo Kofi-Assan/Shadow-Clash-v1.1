@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://buckl4ulrshhe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p72ru"]
+radius = 45.2769
+
+[node name="Charging_station" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(741, 221)
+shape = SubResource("CircleShape2D_p72ru")

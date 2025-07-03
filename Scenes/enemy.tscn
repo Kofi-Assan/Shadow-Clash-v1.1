@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceyqkf080as8t"]
+
+[ext_resource type="Script" uid="uid://dldxq6mwyf0pq" path="res://Scripts/enemy.gd" id="1_1f0kj"]
+[ext_resource type="Texture2D" uid="uid://bpkqjv46hinrf" path="res://Assets/Sprites/icon.svg" id="1_hghv2"]
+[ext_resource type="Script" uid="uid://djsxfwf0k1fx7" path="res://Scripts/torch_battery.gd" id="3_afpow"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1f0kj"]
+radius = 57.0351
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(266, 188)
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_1f0kj")
+health = 70
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hghv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1f0kj")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+autostart = true
+
+[node name="Resume" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="Damage_overtime" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+
+[node name="Despawn" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 4.5
+
+[node name="Auto_regen" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 2.0
+
+[node name="Torch_Battery" type="Timer" parent="."]
+wait_time = 0.1
+script = ExtResource("3_afpow")
+
+[connection signal="timeout" from="Timers/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timers/Resume" to="." method="_on_resume_timeout"]
+[connection signal="timeout" from="Timers/Damage_overtime" to="." method="_on_damage_overtime_timeout"]
+[connection signal="timeout" from="Timers/Despawn" to="." method="_on_despawn_timeout"]
+[connection signal="timeout" from="Timers/Auto_regen" to="." method="_on_auto_regen_timeout"]
+[connection signal="timeout" from="Torch_Battery" to="Torch_Battery" method="_on_timeout"]

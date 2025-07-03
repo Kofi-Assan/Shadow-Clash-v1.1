@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfaobht4c221f"]
+
+[ext_resource type="Texture2D" uid="uid://bpkqjv46hinrf" path="res://Assets/Sprites/icon.svg" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://y6jp68c2jmd2" path="res://Scripts/player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://ddkbopjxx436d" path="res://Scenes/torch.tscn" id="3_6t5aa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6t5aa"]
+radius = 128.098
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(125, 127)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
+speed = 500
+health = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4flbx")
+
+[node name="Torch" parent="Sprite2D" instance=ExtResource("3_6t5aa")]
+unique_name_in_owner = true
+position = Vector2(219, 5)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/Torch"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_6t5aa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_onrkg")

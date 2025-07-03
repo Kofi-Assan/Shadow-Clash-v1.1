@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://etoygqt8g7al"]
+
+[ext_resource type="FontFile" uid="uid://cgby5mf42r5g0" path="res://Assets/Fonts/PixelOperator8.ttf" id="1_h8ka6"]
+[ext_resource type="Script" uid="uid://v53jvbf41snk" path="res://Scripts/torch_counter_pos.gd" id="1_ow507"]
+[ext_resource type="Script" uid="uid://bfusbgfrk4mes" path="res://Scripts/torch_counter.gd" id="3_mrufw"]
+
+[node name="Torch_counter_pos" type="CanvasLayer"]
+script = ExtResource("1_ow507")
+
+[node name="Torch_counter" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 928.0
+offset_top = 3.0
+offset_right = 1124.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("1_h8ka6")
+theme_override_font_sizes/font_size = 24
+vertical_alignment = 1
+script = ExtResource("3_mrufw")
+
+[node name="Enemy_HP" type="Label" parent="."]
+visible = false
+offset_left = 737.0
+offset_right = 933.0
+offset_bottom = 43.0
+text = "Enemy's HP: "
